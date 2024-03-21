@@ -10,7 +10,7 @@
         }
         header {
             padding: 20px;
-            text-align: center;
+            text-align: left;
         }
         hr {
             margin: 20px 0;
@@ -37,13 +37,15 @@
 </head>
 <body>
     <header>
-        <h1>Experiment 1: YourTTS and SynTacc Comparison for Synthesizing Regional and International Accents from Brazilian Portuguese Speech</h1>
+        <h1>Experiments demo audios</h1>
         <hr>
         <h2>System Comparison</h2>
         <p>YourTTS: <i>description</i></p>
         <p>SYNTACC: <i>description</i></p>
         <hr>
     </header>
+    
+    <p>Experiment 1: Transfer accent<\p>
     <table>
         <tr>
             <th>Speaker Sample</th>
@@ -54,23 +56,54 @@
         <tr>
             <td>
                 <b>Brazilian Portuguese</b><br>
-                Audio<br>
-                Transcription
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                <i>Speaker: "Transcription"</i>
             </td>
             <td>
-                Accent 1<br>
+                Accent: 1
                 <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent 2<br>
+                Accent 2
                 <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
             </td>
             <td>
-                Accent 1<br>
+                Accent: 1
                 <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent 2<br>
+                Accent: 2
                 <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
             </td>
         </tr>
         <!-- Add more rows for other accents -->
     </table>
+
+    <hr>
+    <!--
+    <p>Experiment 2: Transfer accent<\p>
+    <table>
+        <tr>
+            <th>Speaker Sample</th>
+            <th>YourTTS</th>
+            <th>SynTacc</th>
+        </tr>
+        <tr>
+            <td>
+                <b>Brazilian Portuguese</b><br>
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                <i>Speaker: "Transcription"</i>
+            </td>
+            <td>
+                Accent: 1
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                Accent 2
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
+            </td>
+            <td>
+                Accent: 1
+                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                Accent: 2
+                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
+            </td>
+        </tr>
+    </table>
+    -->
 </body>
 </html>
