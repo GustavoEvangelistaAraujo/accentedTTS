@@ -9,10 +9,11 @@
             padding: 0;
         }
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            padding: 20px;
             text-align: center;
+        }
+        hr {
+            margin: 20px 0;
         }
         table {
             width: 100%;
@@ -36,30 +37,37 @@
 </head>
 <body>
     <header>
-        <h1>TTS Accent Comparison</h1>
-        <p>The YourTTS model is a state-of-the-art text-to-speech system that provides natural and expressive voice synthesis. The SynTacc model is another advanced TTS system that focuses on producing high-quality speech with accurate intonation and rhythm. This comparison aims to showcase the differences in accent and pronunciation between these two models across various languages.</p>
+        <h1>Experiment 1: YourTTS and SynTacc Comparison for Synthesizing Regional and International Accents from Brazilian Portuguese Speech</h1>
+        <hr>
+        <h2>System Comparison</h2>
+        <p>YourTTS: <i>description</i></p>
+        <p>SYNTACC: <i>description</i></p>
+        <hr>
     </header>
     <table>
         <tr>
-            <th>Accent</th>
-            <th>Baseline</th>
+            <th>Speaker Sample</th>
             <th>YourTTS</th>
             <th>SynTacc</th>
         </tr>
         <!-- Repeat this block for each accent -->
         <tr>
-            <td>Brazilian Portuguese</td>
             <td>
-                <audio controls><source src="audio/baseline/brazilian_portuguese.mp3" type="audio/mpeg"></audio>
-                <div class="transcript">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                <b>Brazilian Portuguese</b><br>
+                Audio<br>
+                Transcription
             </td>
             <td>
-                <audio controls><source src="audio/youttts/brazilian_portuguese.mp3" type="audio/mpeg"></audio>
-                <div class="transcript">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                Accent 1<br>
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                Accent 2<br>
+                <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
             </td>
             <td>
-                <audio controls><source src="audio/syntacc/brazilian_portuguese.mp3" type="audio/mpeg"></audio>
-                <div class="transcript">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                Accent 1<br>
+                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
+                Accent 2<br>
+                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
             </td>
         </tr>
         <!-- Add more rows for other accents -->
