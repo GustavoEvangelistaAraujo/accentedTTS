@@ -151,10 +151,11 @@
             let headerRow = table.insertRow();
             headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SynTacc</th>';
 
+            source = "https://github.com/GustavoEvangelistaAraujo/gustavoevangelistaaraujo.github.io/blob/main/";
             Object.keys(audioFiles['yourtts']).forEach(accent => {
                 let row = table.insertRow();
                 let speakerCell = row.insertCell();
-                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="yourtts/${accent}/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
+                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src=source+"yourtts/${accent}/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
 
                 Object.keys(audioFiles).forEach(system => {
                     let cell = row.insertCell();
