@@ -49,26 +49,118 @@
     <div id="audioTable"></div>
 
     <script>
-        const accents = ['bral', 'brpb', 'brsp']; // List of accents based on folder names
-        const systems = ['yourtts', 'syntacc'];
+        const audioFiles = {
+            'yourtts': {
+                'bral': [
+                    'braltobral-syntacc-295Ksteps.wav',
+                    'braltobralemanha-syntacc-295Ksteps.wav',
+                    'braltobrba-syntacc-295Ksteps.wav',
+                    'braltobrce-syntacc-295Ksteps.wav',
+                    'braltobrgo-syntacc-295Ksteps.wav',
+                    'braltobrmg-syntacc-295Ksteps.wav',
+                    'braltobrpb-syntacc-295Ksteps.wav',
+                    'braltobrpe-syntacc-295Ksteps.wav',
+                    'braltobrportugal-syntacc-295Ksteps.wav',
+                    'braltobrpr-syntacc-295Ksteps.wav',
+                    'braltobrrj-syntacc-295Ksteps.wav',
+                    'braltobrrs-syntacc-295Ksteps.wav',
+                    'braltobrsp-syntacc-295Ksteps.wav'
+                ],
+                'brpb': [
+                    'brpbtobral-syntacc-295Ksteps.wav',
+                    'brpbtobralemanha-syntacc-295Ksteps.wav',
+                    'brpbtobrba-syntacc-295Ksteps.wav',
+                    'brpbtobrce-syntacc-295Ksteps.wav',
+                    'brpbtobrgo-syntacc-295Ksteps.wav',
+                    'brpbtobrmg-syntacc-295Ksteps.wav',
+                    'brpbtobrpb-syntacc-295Ksteps.wav',
+                    'brpbtobrpe-syntacc-295Ksteps.wav',
+                    'brpbtobrportugal-syntacc-295Ksteps.wav',
+                    'brpbtobrpr-syntacc-295Ksteps.wav',
+                    'brpbtobrrj-syntacc-295Ksteps.wav',
+                    'brpbtobrrs-syntacc-295Ksteps.wav',
+                    'brpbtobrsp-syntacc-295Ksteps.wav'
+                ],
+                'brsp': [
+                    'brsptobral-syntacc-295Ksteps.wav',
+                    'brsptobralemanha-syntacc-295Ksteps.wav',
+                    'brsptobrba-syntacc-295Ksteps.wav',
+                    'brsptobrce-syntacc-295Ksteps.wav',
+                    'brsptobrgo-syntacc-295Ksteps.wav',
+                    'brsptobrmg-syntacc-295Ksteps.wav',
+                    'brsptobrpb-syntacc-295Ksteps.wav',
+                    'brsptobrpe-syntacc-295Ksteps.wav',
+                    'brsptobrportugal-syntacc-295Ksteps.wav',
+                    'brsptobrpr-syntacc-295Ksteps.wav',
+                    'brsptobrrj-syntacc-295Ksteps.wav',
+                    'brsptobrrs-syntacc-295Ksteps.wav',
+                    'brsptobrsp-syntacc-295Ksteps.wav'
+                ]
+            },
+            'syntacc': {
+                                'bral': [
+                    'braltobral-syntacc-295Ksteps.wav',
+                    'braltobralemanha-syntacc-295Ksteps.wav',
+                    'braltobrba-syntacc-295Ksteps.wav',
+                    'braltobrce-syntacc-295Ksteps.wav',
+                    'braltobrgo-syntacc-295Ksteps.wav',
+                    'braltobrmg-syntacc-295Ksteps.wav',
+                    'braltobrpb-syntacc-295Ksteps.wav',
+                    'braltobrpe-syntacc-295Ksteps.wav',
+                    'braltobrportugal-syntacc-295Ksteps.wav',
+                    'braltobrpr-syntacc-295Ksteps.wav',
+                    'braltobrrj-syntacc-295Ksteps.wav',
+                    'braltobrrs-syntacc-295Ksteps.wav',
+                    'braltobrsp-syntacc-295Ksteps.wav'
+                ],
+                'brpb': [
+                    'brpbtobral-syntacc-295Ksteps.wav',
+                    'brpbtobralemanha-syntacc-295Ksteps.wav',
+                    'brpbtobrba-syntacc-295Ksteps.wav',
+                    'brpbtobrce-syntacc-295Ksteps.wav',
+                    'brpbtobrgo-syntacc-295Ksteps.wav',
+                    'brpbtobrmg-syntacc-295Ksteps.wav',
+                    'brpbtobrpb-syntacc-295Ksteps.wav',
+                    'brpbtobrpe-syntacc-295Ksteps.wav',
+                    'brpbtobrportugal-syntacc-295Ksteps.wav',
+                    'brpbtobrpr-syntacc-295Ksteps.wav',
+                    'brpbtobrrj-syntacc-295Ksteps.wav',
+                    'brpbtobrrs-syntacc-295Ksteps.wav',
+                    'brpbtobrsp-syntacc-295Ksteps.wav'
+                ],
+                'brsp': [
+                    'brsptobral-syntacc-295Ksteps.wav',
+                    'brsptobralemanha-syntacc-295Ksteps.wav',
+                    'brsptobrba-syntacc-295Ksteps.wav',
+                    'brsptobrce-syntacc-295Ksteps.wav',
+                    'brsptobrgo-syntacc-295Ksteps.wav',
+                    'brsptobrmg-syntacc-295Ksteps.wav',
+                    'brsptobrpb-syntacc-295Ksteps.wav',
+                    'brsptobrpe-syntacc-295Ksteps.wav',
+                    'brsptobrportugal-syntacc-295Ksteps.wav',
+                    'brsptobrpr-syntacc-295Ksteps.wav',
+                    'brsptobrrj-syntacc-295Ksteps.wav',
+                    'brsptobrrs-syntacc-295Ksteps.wav',
+                    'brsptobrsp-syntacc-295Ksteps.wav'
+                ]
+            }
+        };
 
         function createAudioTable() {
             let table = document.createElement('table');
             let headerRow = table.insertRow();
             headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SynTacc</th>';
 
-            accents.forEach(accent => {
+            Object.keys(audioFiles['yourtts']).forEach(accent => {
                 let row = table.insertRow();
                 let speakerCell = row.insertCell();
-                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="${accent}-1/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
+                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="yourtts/${accent}/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
 
-                systems.forEach(system => {
+                Object.keys(audioFiles).forEach(system => {
                     let cell = row.insertCell();
-                    let audioFiles = []; // You would populate this array with the audio file paths for each system and accent
-
-                    audioFiles.forEach(audioFile => {
-                        let accentName = audioFile.match(/(?<=${accent}to)[a-z]+(?=-)/)[0];
-                        cell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${system}/${accent}-1/${audioFile}" type="audio/wav"></audio><br>`;
+                    audioFiles[system][accent].forEach(audioFile => {
+                        let accentName = audioFile.match(/(?<=to)[a-z]+(?=-)/)[0];
+                        cell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${system}/${accent}/${audioFile}" type="audio/wav"></audio><br>`;
                     });
                 });
             });
