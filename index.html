@@ -150,26 +150,27 @@
             let table = document.createElement('table');
             let headerRow = table.insertRow();
             headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SynTacc</th>';
-
-            source = "https://github.com/GustavoEvangelistaAraujo/gustavoevangelistaaraujo.github.io/blob/main/";
+        
             Object.keys(audioFiles['yourtts']).forEach(accent => {
                 let row = table.insertRow();
                 let speakerCell = row.insertCell();
-                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src=source+"yourtts/${accent}/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
-
+                let groundTruthPath = `audio/yourtts/${accent}/ground_truth.wav`;
+                console.log(`Ground truth path: ${groundTruthPath}`);
+                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="${groundTruthPath}" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
+        
                 Object.keys(audioFiles).forEach(system => {
                     let cell = row.insertCell();
                     audioFiles[system][accent].forEach(audioFile => {
                         let accentName = audioFile.match(/(?<=to)[a-z]+(?=-)/)[0];
-                        cell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${system}/${accent}/${audioFile}" type="audio/wav"></audio><br>`;
+                        let filePath = `audio/${system}/${accent}/${audioFile}`;
+                        console.log(`File path: ${filePath}`);
+                        cell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${filePath}" type="audio/wav"></audio><br>`;
                     });
                 });
             });
-
+        
             document.getElementById('audioTable').appendChild(table);
         }
-
-        createAudioTable();
     </script>
 </body>
 </html>
