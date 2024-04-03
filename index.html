@@ -146,18 +146,41 @@
             }
         };
 
+        'braltobrce-syntacc-295Ksteps.wav',
+                    'braltobrgo-syntacc-295Ksteps.wav',
+                    'braltobrmg-syntacc-295Ksteps.wav',
+                    'braltobrpb-syntacc-295Ksteps.wav',
+                    'braltobrpe-syntacc-295Ksteps.wav',
+                    'braltobrportugal-syntacc-295Ksteps.wav',
+                    'braltobrpr-syntacc-295Ksteps.wav',
+                    'braltobrrj-syntacc-295Ksteps.wav',
+                    'braltobrrs-syntacc-295Ksteps.wav',
+                    'braltobrsp-syntacc-295Ksteps.wav'
+                ],
+                'brpb': [
+                    // Add the file names for 'brpb' accent
+                ],
+                'brsp': [
+                    // Add the file names for 'brsp' accent
+                ]
+            },
+            'syntacc': {
+                // Repeat the same structure as 'yourtts' for 'syntacc'
+            }
+        };
+
         function createAudioTable() {
             let table = document.createElement('table');
             let headerRow = table.insertRow();
             headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SynTacc</th>';
-        
+
             Object.keys(audioFiles['yourtts']).forEach(accent => {
                 let row = table.insertRow();
                 let speakerCell = row.insertCell();
                 let groundTruthPath = `audio/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground truth path: ${groundTruthPath}`);
                 speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="${groundTruthPath}" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
-        
+
                 Object.keys(audioFiles).forEach(system => {
                     let cell = row.insertCell();
                     audioFiles[system][accent].forEach(audioFile => {
@@ -168,9 +191,11 @@
                     });
                 });
             });
-        
+
             document.getElementById('audioTable').appendChild(table);
         }
+
+        createAudioTable();
     </script>
 </body>
 </html>
