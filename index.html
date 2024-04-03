@@ -44,87 +44,39 @@
         <p>SYNTACC: <i>description</i></p>
         <hr>
     </header>
-    
-    <p>Experiment 1: Transfer accent<\p>
-    <table>
-        <tr>
-            <th>Speaker Sample</th>
-            <th>YourTTS</th>
-            <th>SynTacc</th>
-        </tr>
-        <!-- Repeat this block for each accent -->
-        <tr>
-            <td>
-                Accent: 1
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                <i>Speaker: "Transcription"</i>
-            </td>
-            <td>
-                Accent: 1<br>
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent: 2<br>
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-            <td>
-                Accent: 1<br>
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent: 2<br>
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-        </tr>
 
-        <!-- ACCENT X -->
-        <tr>
-            <td>
-                Accent: 2
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                <i>Speaker: "Transcription"</i>
-            </td>
-            <td>
-                Accent: 1<br>
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent: 2<br>
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-            <td>
-                Accent: 1<br>
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent: 2<br>
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-        </tr>
-        <!-- Add more rows for other accents -->
-    </table>
+    <p>Experiment 1: Transfer accent</p>
+    <div id="audioTable"></div>
 
-    <hr>
-    <!--
-    <p>Experiment 2: Transfer accent<\p>
-    <table>
-        <tr>
-            <th>Speaker Sample</th>
-            <th>YourTTS</th>
-            <th>SynTacc</th>
-        </tr>
-        <tr>
-            <td>
-                <b>Brazilian Portuguese</b><br>
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                <i>Speaker: "Transcription"</i>
-            </td>
-            <td>
-                Accent: 1
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent 2
-                <audio controls><source src="audio/youttts/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-            <td>
-                Accent: 1
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent1.mp3" type="audio/mpeg"></audio><br>
-                Accent: 2
-                <audio controls><source src="audio/syntacc/brazilian_portuguese_accent2.mp3" type="audio/mpeg"></audio>
-            </td>
-        </tr>
-    </table>
-    -->
+    <script>
+        const accents = ['bral', 'brpb', 'brsp']; // List of accents based on folder names
+        const systems = ['yourtts', 'syntacc'];
+
+        function createAudioTable() {
+            let table = document.createElement('table');
+            let headerRow = table.insertRow();
+            headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SynTacc</th>';
+
+            accents.forEach(accent => {
+                let row = table.insertRow();
+                let speakerCell = row.insertCell();
+                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="${accent}-1/ground_truth.wav" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
+
+                systems.forEach(system => {
+                    let cell = row.insertCell();
+                    let audioFiles = []; // You would populate this array with the audio file paths for each system and accent
+
+                    audioFiles.forEach(audioFile => {
+                        let accentName = audioFile.match(/(?<=${accent}to)[a-z]+(?=-)/)[0];
+                        cell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${system}/${accent}-1/${audioFile}" type="audio/wav"></audio><br>`;
+                    });
+                });
+            });
+
+            document.getElementById('audioTable').appendChild(table);
+        }
+
+        createAudioTable();
+    </script>
 </body>
 </html>
