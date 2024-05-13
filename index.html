@@ -28,10 +28,8 @@
         th {
             background-color: #f2f2f2;
         }
-        .transcript {
-            text-align: left;
-            font-style: italic;
-            color: #666;
+        .highlight {
+            background-color: lightgreen;
         }
         .experiment-section {
             display: none;
@@ -67,8 +65,9 @@
 
     <script>
         const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
+        const accentTransfers = ['braltobral', 'braltobralemanha', 'braltobrba', 'braltobrce', 'braltobrgo', 'braltobrmg', 'braltobrpb', 'braltobrpe', 'braltobrportugal', 'braltobrpr', 'braltobrrj', 'braltobrrs', 'braltobrsp'];
         const accentsExperiment2 = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
-        const fileCount = 14; // Number of files per type (YourTTS and SYNTACC) for Experiment 1
+        const highlightRows = [1, 3, 5]; // Rows to be highlighted
 
         function createAudioTable1() {
             const table = document.createElement('table');
@@ -83,7 +82,7 @@
             accentsExperiment1.forEach(accent => {
                 const groundTruthRow = table.insertRow();
                 const gtCell = groundTruthRow.insertCell();
-                gtCell.rowSpan = fileCount+1;
+                gtCell.rowSpan = accentTransfers.length;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
                 gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
@@ -91,25 +90,28 @@
                         <source src="${groundTruthPath}" type="audio/wav">
                     </audio><br><span>${groundTruthPath}</span><br><i>Transcription: ${accent}</i>`;
 
-                for (let i = 0; i < fileCount; i++) {
+                accentTransfers.forEach((transfer, index) => {
                     const row = table.insertRow();
+                    if (highlightRows.includes(index)) {
+                        row.classList.add('highlight');
+                    }
 
-                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-yourtts-505Ksteps.wav`;
+                    const yourttsPath = `experimento1/yourtts/${accent}/${transfer}-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
-                    yourttsCell.innerHTML = `YourTTS ${i + 1}:<br>
+                    yourttsCell.innerHTML = `YourTTS ${index + 1}:<br>
                         <audio controls>
                             <source src="${yourttsPath}" type="audio/wav">
                         </audio><br><span>${yourttsPath}</span><br>`;
 
-                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}tobral-syntacc-295Ksteps.wav`;
+                    const syntaccPath = `experimento1/syntacc/${accent}/${transfer}-syntacc-295Ksteps.wav`;
                     console.log(`SYNTACC Path: ${syntaccPath}`);
                     const syntaccCell = row.insertCell();
-                    syntaccCell.innerHTML = `SYNTACC ${i + 1}:<br>
+                    syntaccCell.innerHTML = `SYNTACC ${index + 1}:<br>
                         <audio controls>
                             <source src="${syntaccPath}" type="audio/wav">
                         </audio><br><span>${syntaccPath}</span><br>`;
-                }
+                });
             });
 
             document.getElementById('audioTable1').appendChild(table);
@@ -128,7 +130,10 @@
             accentsExperiment2.forEach(accent => {
                 for (let i = 0; i < 30; i++) {
                     const row = table.insertRow();
-                    
+                    if (highlightRows.includes(i)) {
+                        row.classList.add('highlight');
+                    }
+
                     const groundTruthPath = `experimento2/${accent}/${accent}-${i}-gt.wav`;
                     const groundTruthCell = row.insertCell();
                     groundTruthCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
