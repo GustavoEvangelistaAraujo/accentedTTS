@@ -40,8 +40,8 @@
         <h1>Experiments demo audios</h1>
         <hr>
         <h2>System Comparison</h2>
-        <p>YourTTS (CASANOVA <i>et al</i>, 2021) : <i> YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset. 2</i> https://arxiv.org/abs/2112.02418 </p>
-        <p>SYNTACC (NGUYEN <i>et al</i>, 2023): <i> The method works by decomposing each weight matrix into a shared component and an accent-dependent component, with the former being initialized by the pretrained multi-speaker TTS model and the latter being factorized into vectors using rank-1 matrices to reduce the number of training parameters per accent. This weight factorization method proves to be effective in fine-tuning the SYNTACC on multi-accent data sets in a low-resource condition.</i> https://ieeexplore.ieee.org/document/10096431 </p>
+        <p>YourTTS (CASANOVA <i>et al</i>, 2021): <i>YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset.</i> <a href="https://arxiv.org/abs/2112.02418">Link</a></p>
+        <p>SYNTACC (NGUYEN <i>et al</i>, 2023): <i>The method works by decomposing each weight matrix into a shared component and an accent-dependent component, with the former being initialized by the pretrained multi-speaker TTS model and the latter being factorized into vectors using rank-1 matrices to reduce the number of training parameters per accent. This weight factorization method proves to be effective in fine-tuning the SYNTACC on multi-accent data sets in a low-resource condition.</i> <a href="https://ieeexplore.ieee.org/document/10096431">Link</a></p>
         <hr>
     </header>
 
@@ -50,115 +50,48 @@
     <div id="audioTable"></div>
 
     <script>
-        const audioFiles = [
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobral-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobralemanha-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrba-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrce-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrgo-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrmg-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrpb-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrpe-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrportugal-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrpr-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrrj-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrrs-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'bral', file: 'yourtts/bral-1/braltobrsp-yourtts-505Ksteps.wav'},
-
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobral-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobralemanha-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrba-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrce-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrgo-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrmg-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrpb-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrpe-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrportugal-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrpr-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrrj-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrrs-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brpb', file: 'yourtts/brpb-1/brpbtobrsp-yourtts-505Ksteps.wav'},
-
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobral-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobralemanha-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrba-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrce-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrgo-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrmg-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrpb-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrpe-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrportugal-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrpr-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrrj-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrrs-yourtts-505Ksteps.wav'},
-            {system: 'yourtts', accent: 'brsp', file: 'yourtts/brsp-2/brsptobrsp-yourtts-505Ksteps.wav'},
-
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobral-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobralemanha-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrba-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrce-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrgo-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrmg-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrpb-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrpe-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrportugal-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrpr-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrrj-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrrs-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'bral', file: 'syntacc/bral-1/braltobrsp-syntacc-295Ksteps.wav'},
-
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobral-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobralemanha-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrba-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrce-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrgo-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrmg-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrpb-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrpe-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrportugal-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrpr-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrrj-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrrs-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brpb', file: 'syntacc/brpb-1/brpbtobrsp-syntacc-295Ksteps.wav'},
-
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobral-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobralemanha-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrba-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrce-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrgo-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrmg-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrpb-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrpe-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrportugal-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrpr-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrrj-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrrs-syntacc-295Ksteps.wav'},
-            {system: 'syntacc', accent: 'brsp', file: 'syntacc/brsp-2/brsptobrsp-syntacc-295Ksteps.wav'}
+        const accentTransfers = [
+            'braltobral', 'braltobralemanha', 'braltobrba', 'braltobrce', 'braltobrgo',
+            'braltobrmg', 'braltobrpb', 'braltobrpe', 'braltobrportugal', 'braltobrpr',
+            'braltobrrj', 'braltobrrs', 'braltobrsp'
         ];
 
         function createAudioTable() {
-            let table = document.createElement('table');
-            let headerRow = table.insertRow();
-            headerRow.innerHTML = '<th>Speaker Sample</th><th>YourTTS</th><th>SYNTACC</th>';
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <tr>
+                    <th>Speaker Sample</th>
+                    <th>YourTTS</th>
+                    <th>SYNTACC</th>
+                </tr>
+            `;
 
-            let accents = [...new Set(audioFiles.map(file => file.accent))];
+            const accents = ['bral-1', 'brpb-1', 'brsp-2'];
 
             accents.forEach(accent => {
-                let row = table.insertRow();
-                let speakerCell = row.insertCell();
-                let groundTruthPath = `yourtts/${accent}/ground_truth.wav`;
-                speakerCell.innerHTML = `Accent: ${accent}<br><audio controls><source src="${groundTruthPath}" type="audio/wav"></audio><br><i>Speaker: "Transcription"</i>`;
+                const row = table.insertRow();
+                const speakerCell = row.insertCell();
+                speakerCell.innerHTML = `Accent: ${accent}<br>
+                    <audio controls>
+                        <source src="yourtts/${accent}/ground_truth.wav" type="audio/wav">
+                    </audio><br><i>Speaker: "Transcription"</i>`;
 
-                let yourttsCell = row.insertCell();
-                audioFiles.filter(file => file.system === 'yourtts' && file.accent === accent).forEach(audioFile => {
-                    let accentName = audioFile.file.match(/(?<=to)[a-z]+(?=-)/)[0];
-                    yourttsCell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${audioFile.file}" type="audio/wav"></audio><br>`;
+                const yourttsCell = row.insertCell();
+                accentTransfers.forEach(accentTransfer => {
+                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    yourttsCell.innerHTML += `Accent: ${accentName}<br>
+                        <audio controls>
+                            <source src="yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav" type="audio/wav">
+                        </audio><br>`;
                 });
 
-                let syntaccCell = row.insertCell();
-                audioFiles.filter(file => file.system === 'syntacc' && file.accent === accent).forEach(audioFile => {
-                    let accentName = audioFile.file.match(/(?<=to)[a-z]+(?=-)/)[0];
-                    syntaccCell.innerHTML += `Accent: ${accentName}<br><audio controls><source src="${audioFile.file}" type="audio/wav"></audio><br>`;
+                const syntaccCell = row.insertCell();
+                accentTransfers.forEach(accentTransfer => {
+                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    syntaccCell.innerHTML += `Accent: ${accentName}<br>
+                        <audio controls>
+                            <source src="syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav" type="audio/wav">
+                        </audio><br>`;
                 });
             });
 
