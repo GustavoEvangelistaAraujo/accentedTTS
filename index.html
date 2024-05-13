@@ -67,9 +67,7 @@
 
     <script>
         const accentTransfers = [
-            'braltobral', 'braltobralemanha', 'braltobrba', 'braltobrce', 'braltobrgo',
-            'braltobrmg', 'braltobrpb', 'braltobrpe', 'braltobrportugal', 'braltobrpr',
-            'braltobrrj', 'braltobrrs', 'braltobrsp'
+            'bral'
         ];
 
         const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
@@ -97,10 +95,9 @@
 
                 const yourttsCell = row.insertCell();
                 accentTransfers.forEach(accentTransfer => {
-                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
-                    const filePath = `experimento1/yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav`;
+                    const filePath = `experimento1/yourtts/${accent}/${accent}to${accentTransfer}-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${filePath}`);  // Debugging statement
-                    yourttsCell.innerHTML += `Accent: ${accentName}<br>
+                    yourttsCell.innerHTML += `Accent: ${accentTransfer}<br>
                         <audio controls>
                             <source src="${filePath}" type="audio/wav">
                         </audio><br><span>${filePath}</span><br>`;
@@ -108,10 +105,9 @@
 
                 const syntaccCell = row.insertCell();
                 accentTransfers.forEach(accentTransfer => {
-                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
-                    const filePath = `experimento1/syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav`;
+                    const filePath = `experimento1/syntacc/${accent}/${accent}to${accentTransfer}-syntacc-295Ksteps.wav`;
                     console.log(`SYNTACC Path: ${filePath}`);  // Debugging statement
-                    syntaccCell.innerHTML += `Accent: ${accentName}<br>
+                    syntaccCell.innerHTML += `Accent: ${accentTransfer}<br>
                         <audio controls>
                             <source src="${filePath}" type="audio/wav">
                         </audio><br><span>${filePath}</span><br>`;
