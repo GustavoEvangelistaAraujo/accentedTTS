@@ -82,19 +82,23 @@
 
             accentsExperiment1.forEach(accent => {
                 // Ground truth row
-                const gtRow = table.insertRow();
-                const gtCell = gtRow.insertCell();
-                const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
-                console.log(`Ground Truth Path: ${groundTruthPath}`);
-                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
-                    <audio controls>
-                        <source src="${groundTruthPath}" type="audio/wav">
-                    </audio><br><span>${groundTruthPath}</span><br>`;
-                gtCell.colSpan = 3;
-
                 for (let i = 0; i < fileCount; i++) {
                     const row = table.insertRow();
 
+                    // Ground Truth
+                    if (i === 0) {
+                        const gtCell = row.insertCell();
+                        const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
+                        console.log(`Ground Truth Path: ${groundTruthPath}`);
+                        gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
+                            <audio controls>
+                                <source src="${groundTruthPath}" type="audio/wav">
+                            </audio><br><span>${groundTruthPath}</span><br>`;
+                    } else {
+                        row.insertCell(); // Empty cell for alignment
+                    }
+
+                    // YourTTS
                     const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-${i}-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
@@ -103,6 +107,7 @@
                             <source src="${yourttsPath}" type="audio/wav">
                         </audio><br><span>${yourttsPath}</span><br>`;
 
+                    // SYNTACC
                     const syntaccPath = `experimento1/syntacc/${accent}/${accent}tobral-${i}-syntacc-295Ksteps.wav`;
                     console.log(`SYNTACC Path: ${syntaccPath}`);
                     const syntaccCell = row.insertCell();
