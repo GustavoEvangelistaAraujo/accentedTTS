@@ -66,7 +66,6 @@
     </div>
 
     <script>
-        const accentTransfers = ['bral'];
         const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
         const accentsExperiment2 = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
         const fileCount = 14; // Number of files per type (YourTTS and SYNTACC) for Experiment 1
@@ -82,25 +81,21 @@
             `;
 
             accentsExperiment1.forEach(accent => {
-                const accentHeaderRow = table.insertRow();
-                const accentHeaderCell = accentHeaderRow.insertCell();
-                accentHeaderCell.colSpan = 3;
-                accentHeaderCell.innerHTML = `<b>Accent: ${accent}</b>`;
-
+                // Ground truth row
                 const gtRow = table.insertRow();
                 const gtCell = gtRow.insertCell();
-                gtCell.colSpan = 3;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
-                gtCell.innerHTML = `Ground Truth:<br>
+                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
                     <audio controls>
                         <source src="${groundTruthPath}" type="audio/wav">
                     </audio><br><span>${groundTruthPath}</span><br>`;
+                gtCell.colSpan = 3;
 
                 for (let i = 0; i < fileCount; i++) {
                     const row = table.insertRow();
 
-                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}to${accentTransfers[0]}-${i}-yourtts-505Ksteps.wav`;
+                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-${i}-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
                     yourttsCell.innerHTML = `YourTTS ${i + 1}:<br>
@@ -108,7 +103,7 @@
                             <source src="${yourttsPath}" type="audio/wav">
                         </audio><br><span>${yourttsPath}</span><br>`;
 
-                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}to${accentTransfers[0]}-${i}-syntacc-295Ksteps.wav`;
+                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}tobral-${i}-syntacc-295Ksteps.wav`;
                     console.log(`SYNTACC Path: ${syntaccPath}`);
                     const syntaccCell = row.insertCell();
                     syntaccCell.innerHTML = `SYNTACC ${i + 1}:<br>
