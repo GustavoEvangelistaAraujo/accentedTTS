@@ -57,7 +57,7 @@
     <div id="experiment1" class="experiment-section">
         <h2>Experiment 1: Transfer accent</h2>
         <p>Observações: em brsp1 é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
-        <div id="audioTable"></div>
+        <div id="audioTable1"></div>
     </div>
 
     <div id="experiment2" class="experiment-section">
@@ -66,93 +66,15 @@
     </div>
 
     <script>
-        const audioFiles = [
-            'yourtts/bral-1/braltobral-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobralemanha-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrba-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrce-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrgo-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrmg-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrpb-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrpe-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrportugal-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrpr-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrrj-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrrs-yourtts-505Ksteps.wav',
-            'yourtts/bral-1/braltobrsp-yourtts-505Ksteps.wav',
-
-            'yourtts/brpb-1/brpbtobral-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobralemanha-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrba-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrce-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrgo-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrmg-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrpb-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrpe-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrportugal-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrpr-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrrj-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrrs-yourtts-505Ksteps.wav',
-            'yourtts/brpb-1/brpbtobrsp-yourtts-505Ksteps.wav',
-
-            'yourtts/brsp-2/brsptobral-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobralemanha-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrba-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrce-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrgo-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrmg-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrpb-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrpe-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrportugal-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrpr-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrrj-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrrs-yourtts-505Ksteps.wav',
-            'yourtts/brsp-2/brsptobrsp-yourtts-505Ksteps.wav',
-
-            'syntacc/bral-1/braltobral-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobralemanha-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrba-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrce-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrgo-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrmg-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrpb-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrpe-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrportugal-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrpr-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrrj-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrrs-syntacc-295Ksteps.wav',
-            'syntacc/bral-1/braltobrsp-syntacc-295Ksteps.wav',
-
-            'syntacc/brpb-1/brpbtobral-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobralemanha-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrba-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrce-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrgo-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrmg-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrpb-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrpe-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrportugal-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrpr-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrrj-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrrs-syntacc-295Ksteps.wav',
-            'syntacc/brpb-1/brpbtobrsp-syntacc-295Ksteps.wav',
-
-            'syntacc/brsp-2/brsptobral-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobralemanha-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrba-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrce-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrgo-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrmg-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrpb-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrpe-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrportugal-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrpr-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrrj-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrrs-syntacc-295Ksteps.wav',
-            'syntacc/brsp-2/brsptobrsp-syntacc-295Ksteps.wav'
+        const accentTransfers = [
+            'braltobral', 'braltobralemanha', 'braltobrba', 'braltobrce', 'braltobrgo',
+            'braltobrmg', 'braltobrpb', 'braltobrpe', 'braltobrportugal', 'braltobrpr',
+            'braltobrrj', 'braltobrrs', 'braltobrsp'
         ];
 
-        function createAudioTable() {
+        const accents = ['bral', 'brpb', 'brsp'];
+
+        function createAudioTable1() {
             const table = document.createElement('table');
             table.innerHTML = `
                 <tr>
@@ -162,36 +84,82 @@
                 </tr>
             `;
 
-            const accents = [...new Set(audioFiles.map(file => file.match(/\/([a-z]+)-\d+\//)[1]))];
-
             accents.forEach(accent => {
                 const row = table.insertRow();
                 const speakerCell = row.insertCell();
+                const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 speakerCell.innerHTML = `Accent: ${accent}<br>
                     <audio controls>
-                        <source src="yourtts/${accent}-1/ground_truth.wav" type="audio/wav">
+                        <source src="${groundTruthPath}" type="audio/wav">
                     </audio><br><i>Speaker: "Transcription"</i>`;
 
                 const yourttsCell = row.insertCell();
-                audioFiles.filter(file => file.includes('yourtts') && file.includes(accent)).forEach(file => {
-                    const accentName = file.match(/(?<=to)[a-z]+(?=-)/)[0];
+                accentTransfers.forEach(accentTransfer => {
+                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    const filePath = `experimento1/yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav`;
                     yourttsCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
-                            <source src="${file}" type="audio/wav">
-                        </audio><br>`;
+                            <source src="${filePath}" type="audio/wav">
+                        </audio><br><span>${filePath}</span><br>`;
                 });
 
                 const syntaccCell = row.insertCell();
-                audioFiles.filter(file => file.includes('syntacc') && file.includes(accent)).forEach(file => {
-                    const accentName = file.match(/(?<=to)[a-z]+(?=-)/)[0];
+                accentTransfers.forEach(accentTransfer => {
+                    const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    const filePath = `experimento1/syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav`;
                     syntaccCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
-                            <source src="${file}" type="audio/wav">
-                        </audio><br>`;
+                            <source src="${filePath}" type="audio/wav">
+                        </audio><br><span>${filePath}</span><br>`;
                 });
             });
 
-            document.getElementById('audioTable').appendChild(table);
+            document.getElementById('audioTable1').appendChild(table);
+        }
+
+        function createAudioTable2() {
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <tr>
+                    <th>Ground Truth</th>
+                    <th>YourTTS</th>
+                    <th>SYNTACC</th>
+                </tr>
+            `;
+
+            const accents = [
+                'bral', 'bralem', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 
+                'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp'
+            ];
+
+            accents.forEach(accent => {
+                for (let i = 0; i < 30; i++) {
+                    const row = table.insertRow();
+                    
+                    const groundTruthPath = `experimento2/${accent}/${accent}-${i}-gt.wav`;
+                    const groundTruthCell = row.insertCell();
+                    groundTruthCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${groundTruthPath}" type="audio/wav">
+                        </audio><br><span>${groundTruthPath}</span><br>`;
+
+                    const yourttsPath = `experimento2/${accent}/${accent}-${i}-yourtts-505Ksteps.wav`;
+                    const yourttsCell = row.insertCell();
+                    yourttsCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${yourttsPath}" type="audio/wav">
+                        </audio><br><span>${yourttsPath}</span><br>`;
+
+                    const syntaccPath = `experimento2/${accent}/${accent}-${i}-syntacc-295Ksteps.wav`;
+                    const syntaccCell = row.insertCell();
+                    syntaccCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${syntaccPath}" type="audio/wav">
+                        </audio><br><span>${syntaccPath}</span><br>`;
+                }
+            });
+
+            document.getElementById('audioTable2').appendChild(table);
         }
 
         function showExperiment() {
@@ -203,7 +171,9 @@
                 document.getElementById(selectedExperiment).style.display = 'block';
             }
             if (selectedExperiment === 'experiment1') {
-                createAudioTable();
+                createAudioTable1();
+            } else if (selectedExperiment === 'experiment2') {
+                createAudioTable2();
             }
         }
     </script>
