@@ -83,7 +83,7 @@
             accentsExperiment1.forEach(accent => {
                 const groundTruthRow = table.insertRow();
                 const gtCell = groundTruthRow.insertCell();
-                gtCell.rowSpan = fileCount;
+                gtCell.rowSpan = fileCount+1;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
                 gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
@@ -94,7 +94,7 @@
                 for (let i = 0; i < fileCount; i++) {
                     const row = table.insertRow();
 
-                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-${i}-yourtts-505Ksteps.wav`;
+                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
                     yourttsCell.innerHTML = `YourTTS ${i + 1}:<br>
