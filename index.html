@@ -56,7 +56,7 @@
 
     <div id="experiment1" class="experiment-section">
         <h2>Experiment 1: Transfer accent</h2>
-        <p>Observações: em brsp1 é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
+        <p>Observações: em brsp é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
         <div id="audioTable1"></div>
     </div>
 
@@ -73,7 +73,7 @@
         ];
 
         const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
-        const accentsExperiment2 = ['bral', 'bralem', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp'];
+        const accentsExperiment2 = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
 
         function createAudioTable1() {
             const table = document.createElement('table');
@@ -89,6 +89,7 @@
                 const row = table.insertRow();
                 const speakerCell = row.insertCell();
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
+                console.log(`Ground Truth Path: ${groundTruthPath}`);  // Debugging statement
                 speakerCell.innerHTML = `Accent: ${accent}<br>
                     <audio controls>
                         <source src="${groundTruthPath}" type="audio/wav">
@@ -98,6 +99,7 @@
                 accentTransfers.forEach(accentTransfer => {
                     const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
                     const filePath = `experimento1/yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav`;
+                    console.log(`YourTTS Path: ${filePath}`);  // Debugging statement
                     yourttsCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
                             <source src="${filePath}" type="audio/wav">
@@ -108,6 +110,7 @@
                 accentTransfers.forEach(accentTransfer => {
                     const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
                     const filePath = `experimento1/syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav`;
+                    console.log(`SYNTACC Path: ${filePath}`);  // Debugging statement
                     syntaccCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
                             <source src="${filePath}" type="audio/wav">
@@ -167,9 +170,13 @@
                 document.getElementById(selectedExperiment).style.display = 'block';
             }
             if (selectedExperiment === 'experiment1') {
-                createAudioTable1();
+                if (!document.getElementById('audioTable1').hasChildNodes()) {
+                    createAudioTable1();
+                }
             } else if (selectedExperiment === 'experiment2') {
-                createAudioTable2();
+                if (!document.getElementById('audioTable2').hasChildNodes()) {
+                    createAudioTable2();
+                }
             }
         }
     </script>
