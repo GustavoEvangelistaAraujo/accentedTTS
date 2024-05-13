@@ -83,7 +83,7 @@
             accentsExperiment1.forEach(accent => {
                 const groundTruthRow = table.insertRow();
                 const gtCell = groundTruthRow.insertCell();
-                gtCell.rowSpan = 14;
+                gtCell.colSpan = 3;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
                 gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
