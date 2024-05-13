@@ -33,6 +33,9 @@
             font-style: italic;
             color: #666;
         }
+        .experiment-section {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -40,14 +43,27 @@
         <h1>Experiments demo audios</h1>
         <hr>
         <h2>System Comparison</h2>
-        <p>YourTTS (CASANOVA <i>et al</i>, 2021) : <i>YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset.</i> <a href="https://arxiv.org/abs/2112.02418">Link</a></p>
+        <p>YourTTS (CASANOVA <i>et al</i>, 2021): <i>YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset.</i> <a href="https://arxiv.org/abs/2112.02418">Link</a></p>
         <p>SYNTACC (NGUYEN <i>et al</i>, 2023): <i>The method works by decomposing each weight matrix into a shared component and an accent-dependent component, with the former being initialized by the pretrained multi-speaker TTS model and the latter being factorized into vectors using rank-1 matrices to reduce the number of training parameters per accent. This weight factorization method proves to be effective in fine-tuning the SYNTACC on multi-accent data sets in a low-resource condition.</i> <a href="https://ieeexplore.ieee.org/document/10096431">Link</a></p>
         <hr>
     </header>
 
-    <h2>Experiment 1: Transfer accent</h2>
-    <p>Observações: em brsp1 é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
-    <div id="audioTable"></div>
+    <select id="experimentSelect" onchange="showExperiment()">
+        <option value="">Select Experiment</option>
+        <option value="experiment1">Experiment 1: Transfer accent</option>
+        <option value="experiment2">Experiment 2: General quality</option>
+    </select>
+
+    <div id="experiment1" class="experiment-section">
+        <h2>Experiment 1: Transfer accent</h2>
+        <p>Observações: em brsp1 é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
+        <div id="audioTable"></div>
+    </div>
+
+    <div id="experiment2" class="experiment-section">
+        <h2>Experiment 2: General quality</h2>
+        <div id="audioTable2"></div>
+    </div>
 
     <script>
         const audioFiles = [
@@ -178,10 +194,18 @@
             document.getElementById('audioTable').appendChild(table);
         }
 
-        createAudioTable();
+        function showExperiment() {
+            const selectedExperiment = document.getElementById('experimentSelect').value;
+            document.querySelectorAll('.experiment-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            if (selectedExperiment) {
+                document.getElementById(selectedExperiment).style.display = 'block';
+            }
+            if (selectedExperiment === 'experiment1') {
+                createAudioTable();
+            }
+        }
     </script>
-
-    <h2>Experiment 2: General quality</h2>
-    <div id="audioTable2"></div>
 </body>
 </html>
