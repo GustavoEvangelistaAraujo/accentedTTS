@@ -75,6 +75,23 @@
             'brsp': [0, 7, 8]
         };
 
+        // Highlight rows for each accent in Experiment 2
+        const highlightRowsExperiment2 = {
+            'bral': [0, 1, 2],
+            'brba': [3, 4, 5],
+            'brce': [6, 7, 8],
+            'brgo': [9, 10, 11],
+            'brmg': [12, 13, 14],
+            'brpb': [15, 16, 17],
+            'brpe': [18, 19, 20],
+            'brportugal': [21, 22, 23],
+            'brpr': [24, 25, 26],
+            'brrj': [27, 28, 29],
+            'brrs': [0, 3, 6],
+            'brsp': [9, 12, 15],
+            'bralemanha': [18, 21, 24]
+        };
+
         function createAudioTable1() {
             const table = document.createElement('table');
             table.innerHTML = `
@@ -88,7 +105,7 @@
             accentsExperiment1.forEach(accent => {
                 const groundTruthRow = table.insertRow();
                 const gtCell = groundTruthRow.insertCell();
-                gtCell.rowSpan = accentTransfers.length+1;
+                gtCell.rowSpan = accentTransfers.length;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
                 gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
@@ -136,7 +153,10 @@
             accentsExperiment2.forEach(accent => {
                 for (let i = 0; i < 30; i++) {
                     const row = table.insertRow();
-                    
+                    if (highlightRowsExperiment2[accent].includes(i)) {
+                        row.classList.add('highlight');
+                    }
+
                     const groundTruthPath = `experimento2/${accent}/${accent}-${i}-gt.wav`;
                     const groundTruthCell = row.insertCell();
                     groundTruthCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
