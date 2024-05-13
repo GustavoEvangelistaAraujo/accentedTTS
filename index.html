@@ -81,25 +81,26 @@
             `;
 
             accentsExperiment1.forEach(accent => {
-                // Ground truth row
+                const groundTruthRow = table.insertRow();
+                const gtCell = groundTruthRow.insertCell();
+                gtCell.colSpan = 3;
+                const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
+                console.log(`Ground Truth Path: ${groundTruthPath}`);
+                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
+                    <audio controls>
+                        <source src="${groundTruthPath}" type="audio/wav">
+                    </audio><br><span>${groundTruthPath}</span><br>`;
+
                 for (let i = 0; i < fileCount; i++) {
                     const row = table.insertRow();
 
-                    // Ground Truth
                     if (i === 0) {
-                        const gtCell = row.insertCell();
-                        const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
-                        console.log(`Ground Truth Path: ${groundTruthPath}`);
-                        gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
-                            <audio controls>
-                                <source src="${groundTruthPath}" type="audio/wav">
-                            </audio><br><span>${groundTruthPath}</span><br>`;
-                    } else {
-                        row.insertCell(); // Empty cell for alignment
+                        const accentCell = row.insertCell();
+                        accentCell.rowSpan = fileCount;
+                        accentCell.innerHTML = `<b>Accent: ${accent}</b>`;
                     }
 
-                    // YourTTS
-                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-${i}-yourtts-505Ksteps.wav`;
+                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
                     yourttsCell.innerHTML = `YourTTS ${i + 1}:<br>
@@ -107,8 +108,7 @@
                             <source src="${yourttsPath}" type="audio/wav">
                         </audio><br><span>${yourttsPath}</span><br>`;
 
-                    // SYNTACC
-                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}tobral-${i}-syntacc-295Ksteps.wav`;
+                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}tobral-syntacc-295Ksteps.wav`;
                     console.log(`SYNTACC Path: ${syntaccPath}`);
                     const syntaccCell = row.insertCell();
                     syntaccCell.innerHTML = `SYNTACC ${i + 1}:<br>
