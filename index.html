@@ -81,23 +81,18 @@
             `;
 
             accentsExperiment1.forEach(accent => {
-                const groundTruthRow = table.insertRow();
-                const gtCell = groundTruthRow.insertCell();
-                gtCell.colSpan = 3;
-                const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
-                console.log(`Ground Truth Path: ${groundTruthPath}`);
-                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
-                    <audio controls>
-                        <source src="${groundTruthPath}" type="audio/wav">
-                    </audio><br><span>${groundTruthPath}</span><br>`;
-
                 for (let i = 0; i < fileCount; i++) {
-                    const row = table.insertRow();
+                    const groundTruthRow = table.insertRow();
+                    const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
 
                     if (i === 0) {
-                        const accentCell = row.insertCell();
-                        accentCell.rowSpan = fileCount;
-                        accentCell.innerHTML = `<b>Accent: ${accent}</b>`;
+                        const gtCell = groundTruthRow.insertCell();
+                        gtCell.rowSpan = fileCount;
+                        gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
+                        <audio controls>
+                            <source src="${groundTruthPath}" type="audio/wav">
+                        </audio><br><span>${groundTruthPath}</span><br>`;
+                        gtCell.innerHTML = `<i>Transcription: ${accent}</i>`;
                     }
 
                     const yourttsPath = `experimento1/yourtts/${accent}/${accent}tobral-yourtts-505Ksteps.wav`;
