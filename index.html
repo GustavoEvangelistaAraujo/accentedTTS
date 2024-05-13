@@ -71,27 +71,30 @@
             accents.forEach(accent => {
                 const row = table.insertRow();
                 const speakerCell = row.insertCell();
+                const groundTruthPath = `yourtts/${accent}/ground_truth.wav`;
                 speakerCell.innerHTML = `Accent: ${accent}<br>
                     <audio controls>
-                        <source src="yourtts/${accent}/ground_truth.wav" type="audio/wav">
-                    </audio><br><i>Speaker: "Transcription"</i>`;
+                        <source src="${groundTruthPath}" type="audio/wav">
+                    </audio><br><i>Speaker: "Transcription"</i><br><span>${groundTruthPath}</span>`;
 
                 const yourttsCell = row.insertCell();
                 accentTransfers.forEach(accentTransfer => {
                     const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    const yourttsPath = `yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav`;
                     yourttsCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
-                            <source src="yourtts/${accent}/${accentTransfer}-yourtts-505Ksteps.wav" type="audio/wav">
-                        </audio><br>`;
+                            <source src="${yourttsPath}" type="audio/wav">
+                        </audio><br><span>${yourttsPath}</span><br>`;
                 });
 
                 const syntaccCell = row.insertCell();
                 accentTransfers.forEach(accentTransfer => {
                     const accentName = accentTransfer.match(/(?<=to)[a-z]+(?=-)/)[0];
+                    const syntaccPath = `syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav`;
                     syntaccCell.innerHTML += `Accent: ${accentName}<br>
                         <audio controls>
-                            <source src="syntacc/${accent}/${accentTransfer}-syntacc-295Ksteps.wav" type="audio/wav">
-                        </audio><br>`;
+                            <source src="${syntaccPath}" type="audio/wav">
+                        </audio><br><span>${syntaccPath}</span><br>`;
                 });
             });
 
