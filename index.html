@@ -55,6 +55,17 @@
     <div id="experiment1" class="experiment-section">
         <h2>Experiment 1: Transfer accent</h2>
         <p>Observações: em brsp é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
+        <p><strong>Bold Text</strong></p>
+        <ul>
+            <li>Text 1
+                <ul>
+                    <li>Dataset</li>
+                    <li>Model config</li>
+                </ul>
+            </li>
+            <li>Text 2</li>
+            <li>Text 3</li>
+        </ul>
         <div id="audioTable1"></div>
     </div>
 
@@ -105,7 +116,7 @@
             accentsExperiment1.forEach(accent => {
                 const groundTruthRow = table.insertRow();
                 const gtCell = groundTruthRow.insertCell();
-                gtCell.rowSpan = accentTransfers.length;
+                gtCell.rowSpan = accentTransfers.length+1;
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
                 console.log(`Ground Truth Path: ${groundTruthPath}`);
                 gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
