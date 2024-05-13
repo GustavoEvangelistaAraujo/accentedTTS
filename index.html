@@ -72,7 +72,8 @@
             'braltobrrj', 'braltobrrs', 'braltobrsp'
         ];
 
-        const accents = ['bral', 'brpb', 'brsp'];
+        const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
+        const accentsExperiment2 = ['bral', 'bralem', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp'];
 
         function createAudioTable1() {
             const table = document.createElement('table');
@@ -84,7 +85,7 @@
                 </tr>
             `;
 
-            accents.forEach(accent => {
+            accentsExperiment1.forEach(accent => {
                 const row = table.insertRow();
                 const speakerCell = row.insertCell();
                 const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
@@ -127,12 +128,7 @@
                 </tr>
             `;
 
-            const accents = [
-                'bral', 'bralem', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 
-                'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp'
-            ];
-
-            accents.forEach(accent => {
+            accentsExperiment2.forEach(accent => {
                 for (let i = 0; i < 30; i++) {
                     const row = table.insertRow();
                     
