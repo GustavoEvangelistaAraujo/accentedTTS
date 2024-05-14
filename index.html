@@ -76,7 +76,7 @@
 
     <script>
         const accentsExperiment1 = ['bral', 'brpb', 'brsp'];
-        const accentTransfers = ['braltobral', 'braltobralemanha', 'braltobrba', 'braltobrce', 'braltobrgo', 'braltobrmg', 'braltobrpb', 'braltobrpe', 'braltobrportugal', 'braltobrpr', 'braltobrrj', 'braltobrrs', 'braltobrsp'];
+        const accentTransfers = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
         const accentsExperiment2 = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
 
         // Highlight rows for each accent in Experiment 1
@@ -130,7 +130,7 @@
                         row.classList.add('highlight');
                     }
 
-                    const yourttsPath = `experimento1/yourtts/${accent}/${transfer}-yourtts-505Ksteps.wav`;
+                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}to${transfer}-yourtts-505Ksteps.wav`;
                     console.log(`YourTTS Path: ${yourttsPath}`);
                     const yourttsCell = row.insertCell();
                     yourttsCell.innerHTML = `YourTTS ${index + 1}:<br>
