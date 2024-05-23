@@ -38,40 +38,95 @@
 </head>
 <body>
     <header>
-        <h1>Experiments demo audios</h1>
+        <h1>Experimentos - Qualificação </h1>
+        <h2>Um sintetizador de fala Zero-Shot Multi-Speaker para as diferentes variações linguísticas do português brasileiro - Gustavo Evangelista Araújo</h2>
         <hr>
-        <h2>System Comparison</h2>
-        <p>YourTTS (CASANOVA <i>et al</i>, 2021): <i>YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset.</i> <a href="https://arxiv.org/abs/2112.02418">Link</a></p>
-        <p>SYNTACC (NGUYEN <i>et al</i>, 2023): <i>The method works by decomposing each weight matrix into a shared component and an accent-dependent component, with the former being initialized by the pretrained multi-speaker TTS model and the latter being factorized into vectors using rank-1 matrices to reduce the number of training parameters per accent. This weight factorization method proves to be effective in fine-tuning the SYNTACC on multi-accent data sets in a low-resource condition.</i> <a href="https://ieeexplore.ieee.org/document/10096431">Link</a></p>
+        <h2>Comparação entre sistemas</h2>
+        <p><b>YourTTS (CASANOVA <i>et al</i>, 2021):</b> <i>YourTTS brings the power of a multilingual approach to the task of zero-shot multi-speaker TTS. Our method builds upon the VITS model and adds several novel modifications for zero-shot multi-speaker and multilingual training. We achieved state-of-the-art (SOTA) results in zero-shot multi-speaker TTS and results comparable to SOTA in zero-shot voice conversion on the VCTK dataset.</i> <a href="https://arxiv.org/abs/2112.02418">Link</a></p>
+        <p><b>SYNTACC (NGUYEN <i>et al</i>, 2023):</b> <i>The method works by decomposing each weight matrix into a shared component and an accent-dependent component, with the former being initialized by the pretrained multi-speaker TTS model and the latter being factorized into vectors using rank-1 matrices to reduce the number of training parameters per accent. This weight factorization method proves to be effective in fine-tuning the SYNTACC on multi-accent data sets in a low-resource condition.</i> <a href="https://ieeexplore.ieee.org/document/10096431">Link</a></p>
         <hr>
     </header>
 
     <select id="experimentSelect" onchange="showExperiment()">
-        <option value="">Select Experiment</option>
-        <option value="experiment1">Experiment 1: Transfer accent</option>
-        <option value="experiment2">Experiment 2: General quality</option>
+        <option value="">Selecione o experimento</option>
+        <option value="experiment1">Experimento 1: Transferência de sotaque</option>
+        <option value="experiment2">Experimento 2: Qualidade geral</option>
+        <option value="experiment3">Experimento 3: Prova de conceito</option>
     </select>
 
     <div id="experiment1" class="experiment-section">
-        <h2>Experiment 1: Transfer accent</h2>
-        <p>Observações: em brsp é possível observar que em alguns sotaques. Nota-se mudança de prosódia, com alguns sotaques mostrando características interessantes como o 's' do Rio de Janeiro e a entonação da Paraíba, Ceará e Bahia, além do sotaque estrangeiro (Alemanha). Porém, nas falas das planilhas de teste, é difícil de provar esse aprendizado, além de que a diferença entre o yourtts e o syntacc não fica muito evidente de modo geral.</p>
-        <p><strong>Bold Text</strong></p>
+        <h2>Experiment 1: Transferência de sotaque</h2>
+        Conclusões: 
         <ul>
-            <li>Text 1
+            <li>brsp>brpr e brpb>brpr: Estes foram alguns dos casos com síntese mais natural, onde é perceptível a mudança de prosódia tanto do sotaque de São Paulo (SP) quanto da Paraíba (PB). Foi observado que nos dados de treinamento há apenas uma falante com gravação e dicção excelentes, porém com um sotaque mais 'neutro'.</li>
+            <li>brpb>brpb e brsp>brsp: Parece que o modelo SYNTACC consegue sintetizar melhor o sotaque do locutor para o qual foi treinado.</li>
+            <li>brpb>brce: Neste caso, o YourTTS não conseguiu sintetizar algo inteligível, enquanto que o SYNTACC produziu algumas palavras compreensíveis. Nos dados de treinamento, há apenas um locutor com sotaque que parece ser do Ceará, mas com um ruído constante de fundo.</li>
+            <li>brpb>alemanha: Fica evidente a mudança de prosódia nos dois modelos, mas ainda mais evidente no SYNTACC, passando a impressão de ser um estrangeiro falando.</li>
+            <li>brpb>portugal: A mudança de prosódia é evidente nos dois modelos, mas não fica claro qual dos dois é melhor.</li>
+        </ul>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1
                 <ul>
-                    <li>Dataset</li>
-                    <li>Model config</li>
+                    <li>Horas: ~90h</li>
+                    <li>Falantes: 86</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
                 </ul>
             </li>
-            <li>Text 2</li>
-            <li>Text 3</li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>YourTTS: 505.000 steps</li>
+                    <li>SYNTACC: 295.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
         </ul>
         <div id="audioTable1"></div>
     </div>
 
     <div id="experiment2" class="experiment-section">
-        <h2>Experiment 2: General quality</h2>
+        <h2>Experiment 2: Qualidade geral</h2>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1
+                <ul>
+                    <li>Horas: ~90h</li>
+                    <li>Falantes: 86</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
+                </ul>
+            </li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>YourTTS: 505.000 steps</li>
+                    <li>SYNTACC: 295.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
+        </ul>
         <div id="audioTable2"></div>
+    </div>
+
+    <div id="experiment3" class="experiment-section">
+        <h2>Experiment 3: Prova de conceito</h2>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1 - Um falante por variação linguística
+                <ul>
+                    <li>Horas: ~12h</li>
+                    <li>Falantes: 12</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
+                </ul>
+            </li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>SYNTACC: 500.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
+        </ul>
     </div>
 
     <script>
@@ -81,26 +136,26 @@
 
         // Highlight rows for each accent in Experiment 1
         const highlightRowsExperiment1 = {
-            'bral': [1, 3, 5],
-            'brpb': [2, 4, 6],
-            'brsp': [0, 7, 8]
+            'bral': [1, 3, 9, 12, 13],
+            'brpb': [6, 8, 9, 12, 13],
+            'brsp': [1, 3, 9, 12, 13]
         };
 
         // Highlight rows for each accent in Experiment 2
         const highlightRowsExperiment2 = {
-            'bral': [0, 1, 2],
-            'brba': [3, 4, 5],
-            'brce': [6, 7, 8],
-            'brgo': [9, 10, 11],
-            'brmg': [12, 13, 14],
-            'brpb': [15, 16, 17],
-            'brpe': [18, 19, 20],
-            'brportugal': [21, 22, 23],
-            'brpr': [24, 25, 26],
-            'brrj': [27, 28, 29],
-            'brrs': [0, 3, 6],
-            'brsp': [9, 12, 15],
-            'bralemanha': [18, 21, 24]
+            'bral': [4,7,9,12,24],
+            'brba': [3,16,19,22],
+            'brce': [13,19,20,23],
+            'brgo': [12,13,27,26,28],
+            'brmg': [11,20,24,26],
+            'brpb': [23,28,29,20,18],
+            'brpe': [06,11,12,20,23,25],
+            'brportugal': [11,22,24,28,29],
+            'brpr': [11,15,17,21,23,29],
+            'brrj': [],
+            'brrs': [],
+            'brsp': [],
+            'bralemanha': []
         };
 
         function createAudioTable1() {
