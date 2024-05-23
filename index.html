@@ -38,7 +38,7 @@
 </head>
 <body>
     <header>
-        <h1>Experimentos - Qualificação</h1>
+        <h1>Experimentos - Qualificação </h1>
         <h2>Um sintetizador de fala Zero-Shot Multi-Speaker para as diferentes variações linguísticas do português brasileiro - Gustavo Evangelista Araújo</h2>
         <hr>
         <h2>Comparação entre sistemas</h2>
@@ -55,18 +55,76 @@
     </select>
 
     <div id="experiment1" class="experiment-section">
-        <h2>Experimento 1: Transferência de sotaque</h2>
-        <div id="audioTable1"></div>
+        <h2>Experiment 1: Transferência de sotaque</h2>
+        Conclusões: 
+        <ul>
+            <li>brsp>brpr e brpb>brpr: Estes foram alguns dos casos com síntese mais natural, onde é perceptível a mudança de prosódia tanto do sotaque de São Paulo (SP) quanto da Paraíba (PB). Foi observado que nos dados de treinamento há apenas uma falante com gravação e dicção excelentes, porém com um sotaque mais 'neutro'.</li>
+            <li>brpb>brpb e brsp>brsp: Parece que o modelo SYNTACC consegue sintetizar melhor o sotaque do locutor para o qual foi treinado.</li>
+            <li>brpb>brce: Neste caso, o YourTTS não conseguiu sintetizar algo inteligível, enquanto que o SYNTACC produziu algumas palavras compreensíveis. Nos dados de treinamento, há apenas um locutor com sotaque que parece ser do Ceará, mas com um ruído constante de fundo.</li>
+            <li>brpb>alemanha: Fica evidente a mudança de prosódia nos dois modelos, mas ainda mais evidente no SYNTACC, passando a impressão de ser um estrangeiro falando.</li>
+            <li>brpb>portugal: A mudança de prosódia é evidente nos dois modelos, mas não fica claro qual dos dois é melhor.</li>
+        </ul>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1
+                <ul>
+                    <li>Horas: ~90h</li>
+                    <li>Falantes: 86</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
+                </ul>
+            </li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>YourTTS: 505.000 steps</li>
+                    <li>SYNTACC: 295.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
+        </ul>
     </div>
 
     <div id="experiment2" class="experiment-section">
-        <h2>Experimento 2: Qualidade geral</h2>
-        <div id="audioTable2"></div>
+        <h2>Experiment 2: Qualidade geral</h2>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1
+                <ul>
+                    <li>Horas: ~90h</li>
+                    <li>Falantes: 86</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
+                </ul>
+            </li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>YourTTS: 505.000 steps</li>
+                    <li>SYNTACC: 295.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
+        </ul>
     </div>
 
     <div id="experiment3" class="experiment-section">
-        <h2>Experimento 3: Prova de conceito</h2>
-        <div id="audioTable3"></div>
+        <h2>Experiment 3: Prova de conceito</h2>
+        <p><strong>Configurações</strong></p>
+         <ul>
+            <li>Dataset Mupe-v1 - Um falante por variação linguística
+                <ul>
+                    <li>Horas: ~12h</li>
+                    <li>Falantes: 12</li>
+                    <li>Variações linguísticas regionais: 11</li>
+                    <li>Variações linguísticas internacionais: 2</li>
+                </ul>
+            </li>
+            <li>Treinamento:</li>
+                 <ul>
+                    <li>SYNTACC: 500.000 steps</li>
+                    <li>Sample_rate: 16kHz</li>
+                    <li>checkpoint: cml_tts_dataset <a href="https://drive.usercontent.google.com/download?id=1yDCSJ1pFZQTHhL09GMbOrdjcPULApa0p&authuser=2">Link</a></p> </li>
+                 </ul>
+        </ul>
     </div>
 
     <script>
@@ -75,37 +133,167 @@
         const accentsExperiment2 = ['bral', 'brba', 'brce', 'brgo', 'brmg', 'brpb', 'brpe', 'brportugal', 'brpr', 'brrj', 'brrs', 'brsp', 'bralemanha'];
         const accentsExperiment3 = ['bral', 'brpb', 'brsp'];
 
+        // Highlight rows for each accent in Experiment 1
+        const highlightRowsExperiment1 = {
+            'bral': [1, 3, 9, 12, 13],
+            'brpb': [6, 8, 9, 12, 13],
+            'brsp': [1, 3, 9, 12, 13]
+        };
+
+        // Highlight rows for each accent in Experiment 2
+        const highlightRowsExperiment2 = {
+            'bral': [4,7,9,12,24],
+            'brba': [3,16,19,22],
+            'brce': [13,19,20,23],
+            'brgo': [12,13,27,26,28],
+            'brmg': [11,20,24,26],
+            'brpb': [23,28,29,20,18],
+            'brpe': [06,11,12,20,23,25],
+            'brportugal': [11,22,24,28,29],
+            'brpr': [11,15,17,21,23,29],
+            'brrj': [],
+            'brrs': [],
+            'brsp': [],
+            'bralemanha': []
+        };
+
+        const highlightRowsExperiment3 = {
+            'bral': [1, 3, 9, 12, 13],
+            'brpb': [6, 8, 9, 12, 13],
+            'brsp': [1, 3, 9, 12, 13]
+        };
+
         function createAudioTable1() {
             const table = document.createElement('table');
-            table.innerHTML = `<tr><th>Speaker Sample</th><th>YourTTS</th><th>SYNTACC</th></tr>`;
-            // Content generation logic for Experiment 1
+            table.innerHTML = `
+                <tr>
+                    <th>Speaker Sample</th>
+                    <th>YourTTS</th>
+                    <th>SYNTACC</th>
+                </tr>
+            `;
+
+            accentsExperiment1.forEach(accent => {
+                const groundTruthRow = table.insertRow();
+                const gtCell = groundTruthRow.insertCell();
+                gtCell.rowSpan = accentTransfers.length+1;
+                const groundTruthPath = `experimento1/yourtts/${accent}/ground_truth.wav`;
+                console.log(`Ground Truth Path: ${groundTruthPath}`);
+                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
+                    <audio controls>
+                        <source src="${groundTruthPath}" type="audio/wav">
+                    </audio><br><span>${groundTruthPath}</span><br><i>Transcription: ${accent}</i>`;
+
+                accentTransfers.forEach((transfer, index) => {
+                    const row = table.insertRow();
+                    if (highlightRowsExperiment1[accent].includes(index)) {
+                        row.classList.add('highlight');
+                    }
+
+                    const yourttsPath = `experimento1/yourtts/${accent}/${accent}to${transfer}-yourtts-505Ksteps.wav`;
+                    console.log(`YourTTS Path: ${yourttsPath}`);
+                    const yourttsCell = row.insertCell();
+                    yourttsCell.innerHTML = `YourTTS ${index + 1}:<br>
+                        <audio controls>
+                            <source src="${yourttsPath}" type="audio/wav">
+                        </audio><br><span>${yourttsPath}</span><br>`;
+
+                    const syntaccPath = `experimento1/syntacc/${accent}/${accent}to${transfer}-syntacc-295Ksteps.wav`;
+                    console.log(`SYNTACC Path: ${syntaccPath}`);
+                    const syntaccCell = row.insertCell();
+                    syntaccCell.innerHTML = `SYNTACC ${index + 1}:<br>
+                        <audio controls>
+                            <source src="${syntaccPath}" type="audio/wav">
+                        </audio><br><span>${syntaccPath}</span><br>`;
+                });
+            });
+
             document.getElementById('audioTable1').appendChild(table);
         }
 
         function createAudioTable2() {
             const table = document.createElement('table');
-            table.innerHTML = `<tr><th>Ground Truth</th><th>YourTTS</th><th>SYNTACC</th></tr>`;
-            // Content generation logic for Experiment 2
+            table.innerHTML = `
+                <tr>
+                    <th>Ground Truth</th>
+                    <th>YourTTS</th>
+                    <th>SYNTACC</th>
+                </tr>
+            `;
+
+            accentsExperiment2.forEach(accent => {
+                for (let i = 0; i < 30; i++) {
+                    const row = table.insertRow();
+                    if (highlightRowsExperiment2[accent].includes(i)) {
+                        row.classList.add('highlight');
+                    }
+
+                    const groundTruthPath = `experimento2/${accent}/${accent}-${i}-gt.wav`;
+                    const groundTruthCell = row.insertCell();
+                    groundTruthCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${groundTruthPath}" type="audio/wav">
+                        </audio><br><span>${groundTruthPath}</span><br>`;
+
+                    const yourttsPath = `experimento2/${accent}/${accent}-${i}-yourtts-505Ksteps.wav`;
+                    const yourttsCell = row.insertCell();
+                    yourttsCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${yourttsPath}" type="audio/wav">
+                        </audio><br><span>${yourttsPath}</span><br>`;
+
+                    const syntaccPath = `experimento2/${accent}/${accent}-${i}-syntacc-295Ksteps.wav`;
+                    const syntaccCell = row.insertCell();
+                    syntaccCell.innerHTML = `Accent: ${accent}, Sample ${i}<br>
+                        <audio controls>
+                            <source src="${syntaccPath}" type="audio/wav">
+                        </audio><br><span>${syntaccPath}</span><br>`;
+                }
+            });
+
             document.getElementById('audioTable2').appendChild(table);
         }
 
         function createAudioTable3() {
             const table = document.createElement('table');
-            table.innerHTML = `<tr><th>Ground Truth</th><th>SYNTACC</th></tr>`;
+            table.innerHTML = `
+                <tr>
+                    <th>Speaker Sample</th>
+                    <th>YourTTS</th>
+                    <th>SYNTACC</th>
+                </tr>
+            `;
+
             accentsExperiment3.forEach(accent => {
-                const row = table.insertRow();
+                const groundTruthRow = table.insertRow();
+                const gtCell = groundTruthRow.insertCell();
+                gtCell.rowSpan = accentTransfers.length+1;
                 const groundTruthPath = `experimento3/syntacc/${accent}/ground_truth.wav`;
-                const syntaccPath = `experimento3/syntacc/${accent}/syntacc.wav`;
+                console.log(`Ground Truth Path: ${groundTruthPath}`);
+                gtCell.innerHTML = `Ground Truth (Accent: ${accent}):<br>
+                    <audio controls>
+                        <source src="${groundTruthPath}" type="audio/wav">
+                    </audio><br><span>${groundTruthPath}</span><br><i>Transcription: ${accent}</i>`;
 
-                const gtCell = row.insertCell();
-                gtCell.innerHTML = `<audio controls><source src="${groundTruthPath}" type="audio/wav"></audio><br><span>${groundTruthPath}</span>`;
+                accentTransfers.forEach((transfer, index) => {
+                    const row = table.insertRow();
+                    if (highlightRowsExperiment3[accent].includes(index)) {
+                        row.classList.add('highlight');
+                    }
 
-                const syntaccCell = row.insertCell();
-                syntaccCell.innerHTML = `<audio controls><source src="${syntaccPath}" type="audio/wav"></audio><br><span>${syntaccPath}</span>`;
+                    const syntaccPath = `experimento3/syntacc/${accent}/${accent}to${transfer}-syntacc-505Ksteps.wav`;
+                    console.log(`SYNTACC Path: ${syntaccPath}`);
+                    const syntaccCell = row.insertCell();
+                    syntaccCell.innerHTML = `SYNTACC ${index + 1}:<br>
+                        <audio controls>
+                            <source src="${syntaccPath}" type="audio/wav">
+                        </audio><br><span>${syntaccPath}</span><br>`;
+                });
             });
+
             document.getElementById('audioTable3').appendChild(table);
         }
-
+        
         function showExperiment() {
             const selectedExperiment = document.getElementById('experimentSelect').value;
             document.querySelectorAll('.experiment-section').forEach(section => {
